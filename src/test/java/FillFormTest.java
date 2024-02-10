@@ -32,12 +32,10 @@ public class FillFormTest {
             open("/automation-practice-form");
             executeJavaScript("$('#fixedban').remove()");
             executeJavaScript("$('footer').remove()");
-            SelenideElement bannerRoot = $(".fc-consent-root");
-            if (bannerRoot.isDisplayed()) {
-                bannerRoot.$(byText("Consent")).click();
-            }
-        });
 
+            $(".fc-button-label").shouldHave(text("Consent"));
+            $(".fc-button-label").click();
+        });
 
         step("Заполнить форму тестовыми данными", () -> {
             $("#firstName").setValue("Anastasiya");
