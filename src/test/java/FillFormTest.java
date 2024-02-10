@@ -1,4 +1,5 @@
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.BeforeAll;
@@ -31,7 +32,12 @@ public class FillFormTest {
             open("/automation-practice-form");
             executeJavaScript("$('#fixedban').remove()");
             executeJavaScript("$('footer').remove()");
+            SelenideElement bannerRoot = $(".fc-consent-root");
+            if (bannerRoot.isDisplayed()) {
+                bannerRoot.$(byText("Consent")).click();
+            }
         });
+
 
         step("Заполнить форму тестовыми данными", () -> {
             $("#firstName").setValue("Anastasiya");
